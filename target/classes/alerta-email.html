@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alerta del Sistema</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 300;
+        }
+        .alert-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        .content {
+            padding: 30px;
+        }
+        .alert-details {
+            background-color: #f8f9fa;
+            border-left: 4px solid #e74c3c;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .detail-row {
+            display: flex;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .detail-row:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .detail-label {
+            font-weight: bold;
+            color: #2c3e50;
+            min-width: 150px;
+            flex-shrink: 0;
+        }
+        .detail-value {
+            color: #34495e;
+            flex: 1;
+            word-break: break-word;
+        }
+        .xml-container {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 10px;
+            overflow-x: auto;
+        }
+        .xml-content {
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .priority-high {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .footer {
+            background-color: #34495e;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+        }
+        .timestamp {
+            color: #7f8c8d;
+            font-size: 11px;
+            margin-top: 10px;
+        }
+        .action-required {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .camera-info {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        @media (max-width: 600px) {
+            .container {
+                margin: 10px;
+                border-radius: 0;
+            }
+            .detail-row {
+                flex-direction: column;
+            }
+            .detail-label {
+                min-width: auto;
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- Header -->
+    <div class="header">
+        <div class="alert-icon">🚨</div>
+        <h1>ALERTA DEL SISTEMA</h1>
+        <p>Se ha detectado un error que requiere atención inmediata</p>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+        <div class="action-required">
+            <strong>⚠️ ACCIÓN REQUERIDA</strong><br>
+            Se ha detectado un error de tipo: <span class="priority-high" th:text="${tipoError}">Error desconocido</span>
+        </div>
+
+        <!-- Alert Details -->
+        <div class="alert-details">
+            <h3 style="margin-top: 0; color: #2c3e50;">📋 Detalles de la Alerta</h3>
+
+            <div class="detail-row">
+                <div class="detail-label">🗂️ Archivo:</div>
+                <div class="detail-value" th:text="${nombreArchivo}">nombre_archivo.ext</div>
+            </div>
+
+            <div class="detail-row">
+                <div class="detail-label">❌ Tipo de Error:</div>
+                <div class="detail-value priority-high" th:text="${tipoError}">Error de procesamiento</div>
+            </div>
+
+            <div class="detail-row">
+                <div class="detail-label">📅 Fecha y Hora:</div>
+                <div class="detail-value" th:text="${fecha}">01/01/2025 12:00:00</div>
+            </div>
+        </div>
+
+        <!-- Camera Information -->
+        <div class="camera-info">
+            <h3 style="margin-top: 0; color: #1976d2;">📷 Información de la Cámara</h3>
+            <div class="detail-row">
+                <div class="detail-label">🎥 Cámara Afectada:</div>
+                <div class="detail-value" th:text="${camaraAfectada}">CAM-001</div>
+            </div>
+        </div>
+
+        <!-- XML Trama -->
+        <div class="alert-details">
+            <h3 style="margin-top: 0; color: #2c3e50;">📄 Trama XML</h3>
+            <div class="xml-container">
+                <div class="xml-content" th:text="${trama}">
+                    &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+                    &lt;error&gt;
+                    &lt;code&gt;500&lt;/code&gt;
+                    &lt;message&gt;Error de procesamiento&lt;/message&gt;
+                    &lt;/error&gt;
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Information -->
+        <div style="background-color: #f8f9fa; padding: 20px; border-radius: 5px; margin-top: 20px;">
+            <h3 style="margin-top: 0; color: #2c3e50;">ℹ️ Información Adicional</h3>
+            <p><strong>ID de Alerta:</strong> <span th:text="${alertaId}">12345</span></p>
+            <p><strong>Recomendaciones:</strong></p>
+            <ul>
+                <li>Verificar el estado de la cámara afectada</li>
+                <li>Revisar los logs del sistema para más detalles</li>
+                <li>Contactar al equipo técnico si el problema persiste</li>
+            </ul>
+        </div>
+
+        <!-- Contact Information -->
+        <div style="background-color: #e8f5e8; padding: 20px; border-radius: 5px; margin-top: 20px; border-left: 4px solid #4caf50;">
+            <h3 style="margin-top: 0; color: #2e7d32;">📞 Contacto de Soporte</h3>
+            <p>Si necesitas asistencia técnica, contacta a:</p>
+            <ul style="margin: 10px 0;">
+                <li><strong>Email:</strong> soporte@empresa.com</li>
+                <li><strong>Teléfono:</strong> +51 XXX-XXXX</li>
+                <li><strong>Horario:</strong> 24/7 para emergencias</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>Este es un correo automático generado por el Sistema de Monitoreo</p>
+        <p>Por favor, no responder a este mensaje</p>
+        <div class="timestamp">
+            Generado el: <span th:text="${#temporals.format(#temporals.createNow(), 'dd/MM/yyyy HH:mm:ss')}">18/07/2025 10:30:00</span>
+        </div>
+    </div>
+</div>
+</body>
+</html>
