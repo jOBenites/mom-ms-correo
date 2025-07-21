@@ -1,7 +1,6 @@
-package pe.gob.bcrp.services;
+package pe.gob.bcrp.service;
 
-import jakarta.mail.MessagingException;
-import pe.gob.bcrp.model.dtos.RequestSendEmail;
+import pe.gob.bcrp.model.dto.RequestSendEmail;
 import pe.gob.bcrp.model.entity.Alerta;
 
 import java.io.UnsupportedEncodingException;

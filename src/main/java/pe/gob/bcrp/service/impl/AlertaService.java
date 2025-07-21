@@ -1,18 +1,14 @@
-package pe.gob.bcrp.services.impl;
+package pe.gob.bcrp.service.impl;
 
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pe.gob.bcrp.model.dtos.RequestSendEmail;
+import pe.gob.bcrp.model.dto.RequestSendEmail;
 import pe.gob.bcrp.model.entity.Alerta;
 import pe.gob.bcrp.model.entity.EstadoAlerta;
-import pe.gob.bcrp.repositories.AlertaRepository;
-import pe.gob.bcrp.services.IEmailService;
+import pe.gob.bcrp.repository.AlertaRepository;
+import pe.gob.bcrp.service.IEmailService;
 
 import java.time.LocalDateTime;
 

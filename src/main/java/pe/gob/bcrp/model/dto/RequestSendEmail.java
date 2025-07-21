@@ -1,4 +1,4 @@
-package pe.gob.bcrp.model.dtos;
+package pe.gob.bcrp.model.dto;
 
 import lombok.Data;
 

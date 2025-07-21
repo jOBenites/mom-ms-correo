@@ -1,4 +1,4 @@
-package pe.gob.bcrp.services.impl;
+package pe.gob.bcrp.service.impl;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
@@ -9,9 +9,9 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
-import pe.gob.bcrp.model.dtos.RequestSendEmail;
+import pe.gob.bcrp.model.dto.RequestSendEmail;
 import pe.gob.bcrp.model.entity.Alerta;
-import pe.gob.bcrp.services.IEmailService;
+import pe.gob.bcrp.service.IEmailService;
 
 import java.io.UnsupportedEncodingException;
 import java.time.format.DateTimeFormatter;

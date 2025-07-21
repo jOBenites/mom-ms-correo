@@ -1,4 +1,4 @@
-package pe.gob.bcrp.model.dtos;
+package pe.gob.bcrp.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;

@@ -4,7 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="245139c1-312d-4f75-9d1a-693213495c94" name="Changes" comment="" />
+    <list default="true" id="245139c1-312d-4f75-9d1a-693213495c94" name="Changes" comment="inititial">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pe/gob/bcrp/controllers/EmailController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pe/gob/bcrp/controller/EmailController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pe/gob/bcrp/model/dtos/RequestSendEmail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pe/gob/bcrp/model/dto/RequestSendEmail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pe/gob/bcrp/model/dtos/ResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pe/gob/bcrp/model/dto/ResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pe/gob/bcrp/repositories/AlertaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pe/gob/bcrp/repository/AlertaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pe/gob/bcrp/services/IEmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pe/gob/bcrp/service/IEmailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pe/gob/bcrp/services/impl/AlertaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pe/gob/bcrp/service/impl/AlertaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pe/gob/bcrp/services/impl/EmailServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pe/gob/bcrp/service/impl/EmailServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/alerta-email.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/alerta-email.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/alerta-email.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/alerta-email.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pe/gob/bcrp/controllers/EmailController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pe/gob/bcrp/model/entity/Alerta.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pe/gob/bcrp/model/entity/Alerta.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/mom-ms-correo-0.0.1-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/mom-ms-correo-0.0.1-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/mom-ms-correo-0.0.1-SNAPSHOT.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/target/mom-ms-correo-0.0.1-SNAPSHOT.jar.original" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-pe.gob.bcrp.MomMsCorreoApplicationTests.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/pe.gob.bcrp.MomMsCorreoApplicationTests.txt" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,6 +42,21 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;jOBenites&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/jOBenites/mom-ms-correo.git&quot;,
+    &quot;accountId&quot;: &quot;41a241e5-9f6a-49bd-945c-5e4f358e73d2&quot;
+  }
+}</component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
@@ -27,30 +65,34 @@
   &quot;associatedIndex&quot;: 6
 }</component>
   <component name="ProjectId" id="303G6Cg0q0NywC6R1EdDg6FQZXp" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;Spring Boot.MomMsCorreoApplication.executor&quot;: &quot;Run&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/jodar/Documents/Java/mom-ms-correo/src/main/resources&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Maven.mom-ms-correo [clean,compile].executor": "Run",
+    "Maven.mom-ms-correo [clean,package].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.MomMsCorreoApplication.executor": "Run",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/jodar/Documents/Java/mom-ms-correo/src/main/resources",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\jodar\Documents\Java\mom-ms-correo\src\main\resources" />
@@ -98,6 +140,8 @@
       <workItem from="1752852187185" duration="294000" />
       <workItem from="1752852493226" duration="10328000" />
       <workItem from="1752866384689" duration="47000" />
+      <workItem from="1752867635332" duration="1659000" />
+      <workItem from="1753061811115" duration="8134000" />
     </task>
     <servers />
   </component>
