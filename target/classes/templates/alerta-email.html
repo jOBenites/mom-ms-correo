@@ -148,36 +148,32 @@
 
         <!-- Alert Details -->
         <div class="alert-details">
-            <h3 style="margin-top: 0; color: #2c3e50;">📋 Detalles de la Alerta</h3>
+            <h3 style="margin-top: 0; color: #2c3e50;">Detalles de la Alerta</h3>
 
             <div class="detail-row">
-                <div class="detail-label">🗂️ Archivo:</div>
+                <div class="detail-label">Archivo:</div>
                 <div class="detail-value" th:text="${nombreArchivo}">nombre_archivo.ext</div>
             </div>
 
             <div class="detail-row">
-                <div class="detail-label">❌ Tipo de Error:</div>
+                <div class="detail-label">Tipo de Error:</div>
                 <div class="detail-value priority-high" th:text="${tipoError}">Error de procesamiento</div>
             </div>
 
             <div class="detail-row">
-                <div class="detail-label">📅 Fecha y Hora:</div>
+                <div class="detail-label">Fecha y Hora:</div>
                 <div class="detail-value" th:text="${fecha}">01/01/2025 12:00:00</div>
             </div>
-        </div>
 
-        <!-- Camera Information -->
-        <div class="camera-info">
-            <h3 style="margin-top: 0; color: #1976d2;">📷 Información de la Cámara</h3>
             <div class="detail-row">
-                <div class="detail-label">🎥 Cámara Afectada:</div>
+                <div class="detail-label">Cámara Afectada:</div>
                 <div class="detail-value" th:text="${camaraAfectada}">CAM-001</div>
             </div>
         </div>
 
         <!-- XML Trama -->
         <div class="alert-details">
-            <h3 style="margin-top: 0; color: #2c3e50;">📄 Trama XML</h3>
+            <h3 style="margin-top: 0; color: #2c3e50;">Detalle</h3>
             <div class="xml-container">
                 <div class="xml-content" th:text="${trama}">
                     &lt;?xml version="1.0" encoding="UTF-8"?&gt;
@@ -190,37 +186,37 @@
         </div>
 
         <!-- Additional Information -->
-        <div style="background-color: #f8f9fa; padding: 20px; border-radius: 5px; margin-top: 20px;">
-            <h3 style="margin-top: 0; color: #2c3e50;">ℹ️ Información Adicional</h3>
-            <p><strong>ID de Alerta:</strong> <span th:text="${alertaId}">12345</span></p>
-            <p><strong>Recomendaciones:</strong></p>
-            <ul>
-                <li>Verificar el estado de la cámara afectada</li>
-                <li>Revisar los logs del sistema para más detalles</li>
-                <li>Contactar al equipo técnico si el problema persiste</li>
-            </ul>
-        </div>
+<!--        <div style="background-color: #f8f9fa; padding: 20px; border-radius: 5px; margin-top: 20px;">-->
+<!--            <h3 style="margin-top: 0; color: #2c3e50;">ℹ️ Información Adicional</h3>-->
+<!--            <p><strong>ID de Alerta:</strong> <span th:text="${alertaId}">12345</span></p>-->
+<!--            <p><strong>Recomendaciones:</strong></p>-->
+<!--            <ul>-->
+<!--                <li>Verificar el estado de la cámara afectada</li>-->
+<!--                <li>Revisar los logs del sistema para más detalles</li>-->
+<!--                <li>Contactar al equipo técnico si el problema persiste</li>-->
+<!--            </ul>-->
+<!--        </div>-->
 
-        <!-- Contact Information -->
-        <div style="background-color: #e8f5e8; padding: 20px; border-radius: 5px; margin-top: 20px; border-left: 4px solid #4caf50;">
-            <h3 style="margin-top: 0; color: #2e7d32;">📞 Contacto de Soporte</h3>
-            <p>Si necesitas asistencia técnica, contacta a:</p>
-            <ul style="margin: 10px 0;">
-                <li><strong>Email:</strong> soporte@empresa.com</li>
-                <li><strong>Teléfono:</strong> +51 XXX-XXXX</li>
-                <li><strong>Horario:</strong> 24/7 para emergencias</li>
-            </ul>
-        </div>
+<!--        &lt;!&ndash; Contact Information &ndash;&gt;-->
+<!--        <div style="background-color: #e8f5e8; padding: 20px; border-radius: 5px; margin-top: 20px; border-left: 4px solid #4caf50;">-->
+<!--            <h3 style="margin-top: 0; color: #2e7d32;">📞 Contacto de Soporte</h3>-->
+<!--            <p>Si necesitas asistencia técnica, contacta a:</p>-->
+<!--            <ul style="margin: 10px 0;">-->
+<!--                <li><strong>Email:</strong> soporte@empresa.com</li>-->
+<!--                <li><strong>Teléfono:</strong> +51 XXX-XXXX</li>-->
+<!--                <li><strong>Horario:</strong> 24/7 para emergencias</li>-->
+<!--            </ul>-->
+<!--        </div>-->
     </div>
 
     <!-- Footer -->
-    <div class="footer">
-        <p>Este es un correo automático generado por el Sistema de Monitoreo</p>
-        <p>Por favor, no responder a este mensaje</p>
-        <div class="timestamp">
-            Generado el: <span th:text="${#temporals.format(#temporals.createNow(), 'dd/MM/yyyy HH:mm:ss')}">18/07/2025 10:30:00</span>
-        </div>
-    </div>
+<!--    <div class="footer">-->
+<!--        <p>Este es un correo automático generado por el Sistema de Monitoreo</p>-->
+<!--        <p>Por favor, no responder a este mensaje</p>-->
+<!--        <div class="timestamp">-->
+<!--            Generado el: <span th:text="${#temporals.format(#temporals.createNow(), 'dd/MM/yyyy HH:mm:ss')}">18/07/2025 10:30:00</span>-->
+<!--        </div>-->
+<!--    </div>-->
 </div>
 </body>
 </html>
