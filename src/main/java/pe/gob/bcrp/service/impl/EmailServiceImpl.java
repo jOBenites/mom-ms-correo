@@ -2,8 +2,9 @@ package pe.gob.bcrp.service.impl;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -12,16 +13,21 @@ import org.thymeleaf.context.Context;
 import pe.gob.bcrp.model.dto.RequestSendEmail;
 import pe.gob.bcrp.model.entity.Alerta;
 import pe.gob.bcrp.service.IEmailService;
+import pe.gob.bcrp.util.EmailUtils;
 
 import java.io.UnsupportedEncodingException;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 @Log4j2
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class EmailServiceImpl implements IEmailService {
-    private JavaMailSender javaMailSender;
-    private TemplateEngine templateEngine;
+    private final JavaMailSender javaMailSender;
+    private final TemplateEngine templateEngine;
+
+    @Value("${spring.mail.from}")
+    private String emailFrom;
 
     /**
      * Envía correo de alerta usando plantilla HTML
@@ -31,9 +37,28 @@ public class EmailServiceImpl implements IEmailService {
             MimeMessage message = javaMailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
 
+            List<EmailUtils.EmailValidationResult> emailValidationResultList = EmailUtils.parseAndValidateEmailAddresses(requestSendEmail.getTo());
+            for (EmailUtils.EmailValidationResult emailValidationResult : emailValidationResultList) {
+                if(!emailValidationResult.isValid()) {
+                    throw new UnsupportedEncodingException("Email validation failed");
+                }
+            }
+
             // Configurar destinatarios y remitente
-            helper.setTo(requestSendEmail.getTo());
-            helper.setFrom("prueba@gmail.com", "soporte");
+            if (requestSendEmail.getTo() != null && !requestSendEmail.getTo().isEmpty()) {
+                String[] toEmails = EmailUtils.parseEmailAddresses(requestSendEmail.getTo());
+                helper.setTo(toEmails);
+            } else {
+                log.warn("No se especificaron destinatarios TO para alerta ID: {}", alerta.getIdAlerta());
+                return false;
+            }
+
+            if (requestSendEmail.getCc() != null && !requestSendEmail.getCc().isEmpty()) {
+                String[] ccEmails = EmailUtils.parseEmailAddresses(requestSendEmail.getCc());
+                helper.setCc(ccEmails);
+            }
+
+            helper.setFrom(emailFrom, "Soporte");
             helper.setSubject(requestSendEmail.asunto + " - " + requestSendEmail.getTipoError());
 
             // Generar contenido HTML usando Thymeleaf

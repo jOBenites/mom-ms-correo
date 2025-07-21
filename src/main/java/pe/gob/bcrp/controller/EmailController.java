@@ -40,11 +40,19 @@ public class EmailController {
         try {
             Alerta alerta = alertaService.procesarAlerta(request);
 
-            traceabilityService.logSuccess("PROCESO_COMPLETADO", processId,
-                    "Proceso completado exitosamente");
+            if(alerta.getEstado().equals("ERROR_ENVIO")) {
+                traceabilityService.logSuccess("PROCESO_ERROR", processId,
+                        "Error al enviar correo");
 
-            responseDTO.setMessage("Se envío el mensaje correctamente");
-            responseDTO.setData(alerta);
+                responseDTO.setMessage("Error al enviar correo");
+            } else {
+                traceabilityService.logSuccess("PROCESO_COMPLETADO", processId,
+                        "Proceso completado exitosamente");
+
+                responseDTO.setMessage("Se envío el mensaje correctamente");
+                responseDTO.setData(alerta);
+            }
+
             return ResponseEntity.ok(responseDTO);
         } catch (Exception e) {
             traceabilityService.logError("PROCESO_ERROR", processId,
