@@ -47,7 +47,7 @@ public class EmailServiceImpl implements IEmailService {
             // Verificar si hay emails inválidos
             List<EmailUtils.EmailValidationResult> invalidEmails = emailValidationResultList.stream()
                     .filter(result -> !result.isValid())
-                    .collect(Collectors.toList());
+                    .toList();
 
             if (!invalidEmails.isEmpty()) {
                 throw new EmailValidationException(emailValidationResultList);
@@ -59,7 +59,7 @@ public class EmailServiceImpl implements IEmailService {
 
                 List<EmailUtils.EmailValidationResult> invalidCcEmails = ccValidationResultList.stream()
                         .filter(result -> !result.isValid())
-                        .collect(Collectors.toList());
+                        .toList();
 
                 if (!invalidCcEmails.isEmpty()) {
                     throw new EmailValidationException("Emails inválidos en campo CC", ccValidationResultList);
@@ -71,7 +71,8 @@ public class EmailServiceImpl implements IEmailService {
                 String[] toEmails = EmailUtils.parseEmailAddresses(requestSendEmail.getTo());
                 helper.setTo(toEmails);
             } else {
-                traceabilityService.logSuccess(TipoEvento.PROCESO_WARN.name(), procesoId,"No se especificaron destinatarios TO para alerta ID: {}" + alerta.getIdAlerta());
+                traceabilityService.logSuccess(TipoEvento.PROCESO_WARN.name(), procesoId,
+                        String.format("No se especificaron destinatarios TO para alerta ID: %d", alerta.getIdAlerta()));
                 return false;
             }
 
@@ -97,11 +98,13 @@ public class EmailServiceImpl implements IEmailService {
             // Enviar correo
             javaMailSender.send(message);
 
-            traceabilityService.logSuccess(TipoEvento.PROCESO_OK.name(), procesoId,"Correo enviado exitosamente para alerta ID: {}" + alerta.getIdAlerta());
+            traceabilityService.logSuccess(TipoEvento.PROCESO_OK.name(), procesoId,
+                    String.format("Correo enviado exitosamente para alerta ID: %d", alerta.getIdAlerta()));
             return true;
 
         } catch (MessagingException e) {
-            traceabilityService.logSuccess(TipoEvento.PROCESO_ERROR.name(), procesoId,"Error al procesar alerta: {}" + alerta.getIdAlerta());
+            traceabilityService.logSuccess(TipoEvento.PROCESO_ERROR.name(), procesoId,
+                    String.format("Error al procesar alerta: %d", alerta.getIdAlerta()));
             return false;
         }
     }

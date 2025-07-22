@@ -62,7 +62,6 @@ public class EmailController {
             }
 
         } catch (EmailValidationException e) {
-            // No manejar EmailValidationException aquí, dejar que GlobalExceptionHandler se encargue
             traceabilityService.logError(TipoEvento.PROCESO_ERROR.name(), processId,
                     "Error de validación de emails: " + e.getMessage());
             throw e; // Re-lanzar para que GlobalExceptionHandler lo maneje

@@ -11,11 +11,12 @@ public class RequestSendEmail {
     public String cc;
     @NotBlank(message = "Asunto es requerido")
     public String asunto;
-    @NotBlank(message = "Nombre de archivo es requerido")
     public String nombreArchivo;
     public String tipoError;
     @NotBlank(message = "Camara afectada es requerida")
     public String camaraAfectada;
     @NotBlank(message = "La trama es requerida")
     public String trama;
+    @NotBlank(message = "El usuario es requerido")
+    public String usuarioSistema;
 }

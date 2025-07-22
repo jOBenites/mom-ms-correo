@@ -35,7 +35,8 @@ public class AlertaService {
             Alerta alerta = crearAlerta(request);
             Alerta alertaGuardada = alertaRepository.save(alerta);
 
-            traceabilityService.logSuccess(TipoEvento.PROCESO_OK.name(), procesoId,"Alerta guardada en BD con ID: {}" + alertaGuardada.getIdAlerta());
+            traceabilityService.logSuccess(TipoEvento.PROCESO_OK.name(), procesoId,
+                    String.format("Alerta guardada en BD con ID: %d", alertaGuardada.getIdAlerta()));
 
             // 2. Enviar correo
             boolean correoEnviado = enviarCorreoAlerta(request, alertaGuardada, procesoId);
@@ -45,17 +46,18 @@ public class AlertaService {
                 alertaGuardada.setFechaEnvio(LocalDateTime.now());
                 alertaGuardada.setEstado(EstadoAlerta.ENVIADA);
 
-                traceabilityService.logSuccess(TipoEvento.PROCESO_OK.name(), procesoId,"Correo enviado exitosamente para alerta ID: {}" + alertaGuardada.getIdAlerta());
+                traceabilityService.logSuccess(TipoEvento.PROCESO_OK.name(), procesoId,
+                        String.format("Se actualizo el estado para la alerta ID: %d", alertaGuardada.getIdAlerta()));
             } else {
                 alertaGuardada.setEstado(EstadoAlerta.ERROR_ENVIO);
 
-                traceabilityService.logSuccess(TipoEvento.PROCESO_ERROR.name(), procesoId,"Error al enviar correo para alerta ID: {}" + alertaGuardada.getIdAlerta());
+                traceabilityService.logSuccess(TipoEvento.PROCESO_ERROR.name(), procesoId,
+                        String.format("Error al enviar correo para alerta ID: %d", alertaGuardada.getIdAlerta()));
             }
 
             return alertaRepository.save(alertaGuardada);
 
         } catch (EmailValidationException e) {
-            // Re-lanzar EmailValidationException para que sea manejada por GlobalExceptionHandler
             traceabilityService.logError(TipoEvento.PROCESO_ERROR.name(), procesoId,"Error de validación de emails: " + e.getMessage());
             throw e;
         } catch (Exception e) {
@@ -74,6 +76,7 @@ public class AlertaService {
         alerta.setFechaCreacion(LocalDateTime.now());
         alerta.setCamAfectada(alertaDTO.getCamaraAfectada());
         alerta.setTrama(alertaDTO.getTrama());
+        alerta.setUsuarioCreacion(alertaDTO.getUsuarioSistema());
         alerta.setEstado(EstadoAlerta.PENDIENTE);
 
         return alerta;
@@ -86,16 +89,19 @@ public class AlertaService {
         try {
             return emailService.enviarAlertaCorreo(request, alerta, procesoId);
         } catch (EmailValidationException e) {
-            // Re-lanzar EmailValidationException para que sea manejada por el método padre
             log.error("Error de validación de emails para alerta ID: {}", alerta.getIdAlerta(), e);
+            traceabilityService.logError(TipoEvento.PROCESO_ERROR.name(), procesoId,
+                    String.format("Error de validación para alerta ID: %d", alerta.getIdAlerta()));
             throw e;
         } catch (UnsupportedEncodingException e) {
             log.error("Error de codificación al enviar correo para alerta ID: {}", alerta.getIdAlerta(), e);
-            traceabilityService.logError(TipoEvento.PROCESO_ERROR.name(), procesoId,"Error de codificación para alerta ID: " + alerta.getIdAlerta());
+            traceabilityService.logError(TipoEvento.PROCESO_ERROR.name(), procesoId,
+                    String.format("Error de codificación para alerta ID: %d", alerta.getIdAlerta()));
             return false;
         } catch (Exception e) {
             log.error("Error al enviar correo para alerta ID: {}", alerta.getIdAlerta(), e);
-            traceabilityService.logError(TipoEvento.PROCESO_ERROR.name(), procesoId,"Error al enviar correo para alerta ID: " + alerta.getIdAlerta());
+            traceabilityService.logError(TipoEvento.PROCESO_ERROR.name(), procesoId,
+                    String.format("Error al enviar correo para alerta ID: %d", alerta.getIdAlerta()));
             return false;
         }
     }
