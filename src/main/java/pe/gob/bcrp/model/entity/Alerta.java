@@ -29,9 +29,9 @@ public class Alerta {
     @Comment("Tipo de error")
     private String tipError;
 
-    @Column(name = "FEC_ERROR")
-    @Comment("Fecha de origen error")
-    private LocalDateTime fechaError;
+    @Column(name = "FEC_ENVIO")
+    @Comment("Fecha de envió mensaje")
+    private LocalDateTime fechaEnvio;
 
     @Column(name = "CAM_AFECTADA")
     @Comment("Camara afectada")

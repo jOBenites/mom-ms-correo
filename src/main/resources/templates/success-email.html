@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notificación del Sistema</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #27ae60, #229954);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 300;
+        }
+        .success-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        .content {
+            padding: 30px;
+        }
+        .success-details {
+            background-color: #f8f9fa;
+            border-left: 4px solid #27ae60;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .detail-row {
+            display: flex;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .detail-row:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .detail-label {
+            font-weight: bold;
+            color: #2c3e50;
+            min-width: 150px;
+            flex-shrink: 0;
+        }
+        .detail-value {
+            color: #34495e;
+            flex: 1;
+            word-break: break-word;
+        }
+        .xml-container {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 10px;
+            overflow-x: auto;
+        }
+        .xml-content {
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .priority-success {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .footer {
+            background-color: #34495e;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+        }
+        .timestamp {
+            color: #7f8c8d;
+            font-size: 11px;
+            margin-top: 10px;
+        }
+        .success-confirmation {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .camera-info {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        @media (max-width: 600px) {
+            .container {
+                margin: 10px;
+                border-radius: 0;
+            }
+            .detail-row {
+                flex-direction: column;
+            }
+            .detail-label {
+                min-width: auto;
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- Header -->
+    <div class="header">
+        <div class="success-icon">✅</div>
+        <h1>OPERACIÓN EXITOSA</h1>
+        <p>El proceso se ha completado correctamente</p>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+        <div class="success-confirmation">
+            <strong>✓ PROCESO COMPLETADO</strong><br>
+            La operación de tipo: <span class="priority-success" th:text="${tipoOperacion}">Operación desconocida</span> se ejecutó exitosamente
+        </div>
+
+        <!-- Success Details -->
+        <div class="success-details">
+            <h3 style="margin-top: 0; color: #2c3e50;">Detalles de la Operación</h3>
+
+            <div class="detail-row">
+                <div class="detail-label">Archivo:</div>
+                <div class="detail-value" th:text="${nombreArchivo}">nombre_archivo.ext</div>
+            </div>
+
+<!--            <div class="detail-row">-->
+<!--                <div class="detail-label">Tipo de Operación:</div>-->
+<!--                <div class="detail-value priority-success" th:text="${tipoOperacion}">Procesamiento completado</div>-->
+<!--            </div>-->
+
+            <div class="detail-row">
+                <div class="detail-label">Fecha y Hora:</div>
+                <div class="detail-value" th:text="${fecha}">01/01/2025 12:00:00</div>
+            </div>
+
+            <div class="detail-row">
+                <div class="detail-label">Cámara Procesada:</div>
+                <div class="detail-value" th:text="${camaraAfectada}">CAM-001</div>
+            </div>
+
+            <div class="detail-row">
+                <div class="detail-label">Estado:</div>
+                <div class="detail-value priority-success">Completado exitosamente</div>
+            </div>
+        </div>
+
+        <!-- XML Response -->
+        <div class="success-details">
+            <h3 style="margin-top: 0; color: #2c3e50;">Respuesta del Sistema</h3>
+            <div class="xml-container">
+                <div class="xml-content" th:text="${trama}">
+                    &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+                    &lt;response&gt;
+                    &lt;status&gt;success&lt;/status&gt;
+                    &lt;code&gt;200&lt;/code&gt;
+                    &lt;message&gt;Operación completada exitosamente&lt;/message&gt;
+                    &lt;/response&gt;
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Information -->
+        <!--        <div style="background-color: #f8f9fa; padding: 20px; border-radius: 5px; margin-top: 20px;">-->
+        <!--            <h3 style="margin-top: 0; color: #2c3e50;">ℹ️ Información Adicional</h3>-->
+        <!--            <p><strong>ID de Transacción:</strong> <span th:text="${transaccionId}">12345</span></p>-->
+        <!--            <p><strong>Detalles:</strong></p>-->
+        <!--            <ul>-->
+        <!--                <li>Todos los archivos fueron procesados correctamente</li>-->
+        <!--                <li>La cámara está funcionando normalmente</li>-->
+        <!--                <li>No se requieren acciones adicionales</li>-->
+        <!--            </ul>-->
+        <!--        </div>-->
+
+        <!-- Summary Information -->
+<!--        <div style="background-color: #e8f5e8; padding: 20px; border-radius: 5px; margin-top: 20px; border-left: 4px solid #27ae60;">-->
+<!--            <h3 style="margin-top: 0; color: #2e7d32;">📊 Resumen de la Operación</h3>-->
+<!--            <p>La operación se completó sin errores. Todos los componentes del sistema están funcionando correctamente.</p>-->
+<!--            <div style="margin: 15px 0;">-->
+<!--                <p><strong>Tiempo de procesamiento:</strong> <span th:text="${tiempoProcesamiento}">2.5 segundos</span></p>-->
+<!--                <p><strong>Archivos procesados:</strong> <span th:text="${archivosProcessados}">1</span></p>-->
+<!--                <p><strong>Estado del sistema:</strong> <span class="priority-success">Operativo</span></p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+    <!-- Footer -->
+    <!--    <div class="footer">-->
+    <!--        <p>Este es un correo automático generado por el Sistema de Monitoreo</p>-->
+    <!--        <p>Por favor, no responder a este mensaje</p>-->
+    <!--        <div class="timestamp">-->
+    <!--            Generado el: <span th:text="${#temporals.format(#temporals.createNow(), 'dd/MM/yyyy HH:mm:ss')}">18/07/2025 10:30:00</span>-->
+    <!--        </div>-->
+    <!--    </div>-->
+</div>
+</body>
+</html>
